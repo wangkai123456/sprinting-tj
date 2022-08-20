@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react'
+import CountItem from './CountItem'
+
 import './App.css';
 
 function App() {
+  const [ dataList,setDataList ] = useState([
+    { tag: false,name: '羊肉串',num: 0 },
+    { tag: false,name: '腰子',num: 0 },
+    { tag: false,name: '韭菜',num: 0 }
+  ]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {
+        dataList.map((item,index)=>{
+          return <CountItem
+            item={item}
+            changeCount={(code)=>setDataList(code)}
+          />
+        })
+      }
     </div>
   );
 }
